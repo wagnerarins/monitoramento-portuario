@@ -1,17 +1,20 @@
-# Monitoramento Automático de Movimentação Portuária (SC)
+# Pipeline Automatizado para Monitoramento de Logística Portuária (SC)
 
-Este projeto automatiza a coleta, processamento e visualização de dados das zonas portuárias ZP-21 (Itajaí/NVT) e ZP-18 (SFS/Itapoá).
+Este projeto implementa um fluxo completo de engenharia e análise de dados para o monitoramento de manobras de navios nas zonas de praticagem ZP-21 (Complexo Portuário de Itajaí e Navegantes) e ZP-18 (São Francisco do Sul e Itapoá).
 
-##  Funcionamento
-1. **Coleta (Python):** Um script realiza o web scraping dos dados de embarque e desembarque de práticos.
-2. **Automação (GitHub Actions):** O robô acorda diariamente às 06:00 (BRT), executa a coleta e atualiza um arquivo CSV no repositório.
-3. **Visualização (Power BI):** O dashboard consome o CSV direto do GitHub e atualiza automaticamente às 08:00 (BRT), garantindo dados sempre frescos sem intervenção humana.
+## Arquitetura da Solução
+A solução foi desenhada para operar de forma autônoma, garantindo a integridade e a atualização constante das informações:
 
-## Tecnologias
-- **Linguagem:** Python (Pandas/BeautifulSoup)
-- **CI/CD:** GitHub Actions
-- **BI:** Power BI Service (Cloud)
+* **Ingestão de Dados (Python):** Scripts customizados para extração (web scraping) e normalização de dados brutos provenientes dos portais de praticagem.
+* **Orquestração e CI/CD (GitHub Actions):** Automação do ciclo de vida dos dados, com execuções agendadas via cron job, garantindo o versionamento e a persistência histórica em arquivo .csv.
+* **Business Intelligence (Power BI Service):** Dashboard executivo integrado via nuvem, permitindo monitoramento remoto em tempo real sem dependência de infraestrutura local (Gateway).
 
-## Insights do Dashboard
-- Volume de manobras por berço e origem.
-- Monitoramento de KPIs de saídas totais por zona.
+##  Escopo Analítico
+* **Produtividade por Berço:** Monitoramento do fluxo de manobras e ocupação.
+* **Perfil de Frota:** Análise técnica de dimensões (Boca e Calado) para compreensão do perfil de navios que operam no complexo.
+* **Histórico Operacional:** Consolidação de base de dados para análise de tendências e sazonalidade portuária.
+
+##  Tecnologias Utilizadas
+* **Linguagem:** Python 3.10 (Pandas, Selenium, WebDriver Manager)
+* **Automação:** GitHub Actions
+* **Visualização:** Microsoft Power BI (DAX / Power Query)
